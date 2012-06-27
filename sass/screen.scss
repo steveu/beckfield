@@ -1,0 +1,131 @@
+//	******************************************************************
+//	Compass Framework
+//	******************************************************************
+	
+@import
+	"compass/reset",
+	"compass/utilities",
+	"compass/css3",
+	"compass/typography/vertical_rhythm",
+	"compass/layout/grid-background";
+
+
+//	******************************************************************
+//	Global Variables
+//	******************************************************************
+	
+// Vertical Rhythm
+$base-font-size: 16px;
+$base-line-height: 22px;
+
+// Debug Vertical Grid
+$debug: 0;
+$grid-background-baseline-height: 1.44444444em;
+$grid-background-baseline-color: rgba(255, 0, 0, 0.4);
+
+// Typefaces
+$font-family: "dejarip-1", "dejarip-2", georgia, serif;
+$heading-font-family:"dejarip-1", "dejarip-2", sans-serif;
+
+// Text Colors
+$text-color: #4F4F4F;
+$heading-color: #54524E;
+
+// Colors
+$orange: #DE7719;
+//$orange: #E0523C; // alternative red
+$light-blue: #E7F3FF;
+
+// Grid
+$gutter: 2.4em;
+$max-width: 760px;
+$content-column: 65%;
+$sidebar-column: 35%;
+
+// Media Query Font Sizes
+$font-size: 16px;
+$tablet-font-size: 16px;
+$desktop-font-size: 20px;
+
+
+//	******************************************************************
+//	Base Styles
+//	******************************************************************
+
+// Sets body font size based on vertical rhythm
+@include establish-baseline($base-font-size);
+
+
+html, body {
+	min-height: 100%;	
+}
+
+body {
+	font-family: $font-family;
+	color: $text-color;
+	background: url('/assets/images/bg.jpg') 50% 0px no-repeat;
+	background-position: fixed;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+
+	@if $debug == 1 {
+		@include baseline-grid-background();
+		background-color: #fff;
+	}
+
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+
+}
+
+//	******************************************************************
+//	Imports
+//	******************************************************************
+@import
+	"tools",
+	"typography";
+
+
+//	******************************************************************
+//	Main Layout
+//	******************************************************************
+
+#wrapper {
+	width: $max-width;
+	margin: $gutter auto;
+	background: #fff;
+	padding: $gutter;
+}
+
+#top {
+
+	margin-bottom: ($gutter / 2);
+	@include clearfix;
+	h1 {
+		
+		width: $sidebar-column;
+		float: left;
+	}
+
+	nav {
+		width: $content-column;
+		float: right;
+		@include clearfix;
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			float: left;
+			background: #fff;
+		}
+	}
+}
+
+
+#content {
+
+	min-height: 600px;
+}
